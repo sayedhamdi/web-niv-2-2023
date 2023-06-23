@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 300px;
+        height: 300px;
+        background: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <span id="">a</span>x<sup>2</sup> + <span>b</span>x + <span>c</span>
+    </div>
+    <input type="text" id="el" />
+    <div class="box"></div>
+  </body>
+  <script>
+    let element = document.querySelector("#el");
+    element.addEventListener("change", function () {
+      alert("ahmed mohsen");
+    });
+    document.body.addEventListener("mousemove", kifYetharek);
+    function kifYetharek(e) {
+      console.log(e);
+      if (e) console.log("tetharek barcha f site");
+    }
+  </script>
+</html>
