@@ -126,3 +126,4 @@ let personnes = [
 // function 2 ===> tchoufli thamech zouz abed andhom nafs laamor ==> resultat tableau
 // function 3 ===> filter les champs incorrectes  ===> tableau ndhif 
 // function 4 ===> search by firstname or lastname ==> return true or false
+
