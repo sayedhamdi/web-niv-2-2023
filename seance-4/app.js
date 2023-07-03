@@ -5,6 +5,25 @@ let products = prods.products
 let minprice = document.querySelector("#minprice")
 let maxprice = document.querySelector("#maxprice")
 
+let categorySelect = document.querySelector("#category")
+
+let  fillCategories   =  () =>{
+    let categories = new Set(products.map(p=>p.category))
+    for (categorie of categories){
+        let option = document.createElement("option")
+        option.value = categorie
+        option.innerText = categorie
+        categorySelect.appendChild(option)
+
+    }
+
+}
+
+fillCategories()
+
+categorySelect.onchange = (e)=>{
+    afficherProducts(products.filter(p => p.category ==e.target.value))
+}
 
 let changeMinAndMaxPrice = ()=>{
     let newProducts = [...products]
@@ -14,20 +33,10 @@ let changeMinAndMaxPrice = ()=>{
     minprice.children[0].max = newProducts[newProducts.length -1].price
     maxprice.children[0].min = newProducts[0].price
     maxprice.children[0].max = newProducts[newProducts.length -1].price
-
 }
+
 changeMinAndMaxPrice()
-let isar = false
-minprice.onmouseover = ()=>{
-    if(isar){
-        minprice.style.marginTop ="300px"
 
-    }else{
-        minprice.style.marginLeft ="-300px"
-
-    }
-    isar = !isar
-}
 minprice.children[0].onchange = (e)=>{
     minprice.children[1].innerHTML = `${e.target.value} dt`
     afficherProducts2(products.filter(p =>p.price >= e.target.value  && p.price <=Number(maxprice.children[0].value)  ))
