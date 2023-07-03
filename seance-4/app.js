@@ -4,7 +4,27 @@ let products = prods.products
 
 let minprice = document.querySelector("#minprice")
 let maxprice = document.querySelector("#maxprice")
+let starsDiv = document.querySelector("#stars")
 
+let starFilrer = ()=>{
+    let stars = [1,2,3,4,5]
+    stars.map((star)=>{
+        let span = document.createElement("span")
+        span.innerHTML = '&star;';
+        span.id = `start-${star}`
+        span.onclick = (e)=>{
+            for(s of starsDiv.children)
+               s.innerHTML = `&star;`
+            for (s of starsDiv.children ){
+                if (s.id <= e.target.id)
+                    s.innerHTML = `&starf;`
+            }
+            afficherProducts(products.filter(p=>Math.round(p.rating)==e.target.id.split("-")[1]))
+        }
+        starsDiv.appendChild(span)
+    })
+}
+starFilrer()
 let categorySelect = document.querySelector("#category")
 
 let  fillCategories   =  () =>{
@@ -50,7 +70,14 @@ maxprice.children[0].onchange = (e)=>{
 
 
 function createProduct(product){
-    let { id, title , description, price, thumbnail } = product
+    let { id, title , description, price, thumbnail,rating } = product
+    let stars = ''
+    console.log(Math.floor(rating))
+    for ( star of Array.from(Array(Math.floor(rating))))
+        stars +='&starf;'
+    for (star of Array.from(Array(Math.floor(6 - rating))))
+        stars += '&star;'
+
     let productHTML = `
     <div class="product">
     <img
@@ -62,6 +89,7 @@ function createProduct(product){
       ${description}
     </p>
     <b>${price} dt </b>
+    <span>${stars}</span>
   </div>
     `
     return productHTML
@@ -106,7 +134,7 @@ function afficherProducts2(products){
 }
 
 
-afficherProducts2(products.slice(0,9))
+afficherProducts(products.slice(0,9))
 
 
 let afficherLiA9alMel10Dinar = ()=>{
