@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script type="text/babel">
+    let rootNode = document.getElementById("root");
+    let date = new Date();
+
+    let h1 = React.createElement(
+      "h1",
+      {},
+      `time is ${date.toLocaleTimeString()}`
+    );
+
+    function Person({ image, fullname }) {
+      return (
+        <div>
+          <img src={image} />
+          <p>{fullname}</p>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(rootNode);
+
+    let HomePage = () => {
+      return (
+        <div>
+          <Navbar links={["l1", "l2"]} />
+          <Time time={new Date().toLocaleTimeString()} />
+          <span>hello</span>
+          <Footer />
+        </div>
+      );
+    };
+
+    let Footer = () => {
+      return (
+        <footer>
+          <span>Footer credit to react</span>
+          <a href="https://react.org">go to react</a>
+        </footer>
+      );
+    };
+    let Time = ({ time }) => {
+      return (
+        <div>
+          <span>The time is {time}</span>
+        </div>
+      );
+    };
+
+    function Navbar({ links }) {
+      let s = {
+        display: "flex",
+        border: "1px solid black",
+        listStyle: "none",
+        gap: "20px",
+      };
+      return (
+        <ul style={s}>
+          {links.map((link) => (
+            <li>{link}</li>
+          ))}
+        </ul>
+      );
+    }
+    root.render(<HomePage />);
+  </script>
+</html>
